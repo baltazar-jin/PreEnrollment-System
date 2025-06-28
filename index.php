@@ -1,3 +1,3 @@
 <?php
-header("Location: views/enroll_form.php");
+header("Location: views/homepage.php");
 exit();
