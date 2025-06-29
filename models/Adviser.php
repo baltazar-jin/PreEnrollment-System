@@ -2,7 +2,7 @@
 require_once(__DIR__ . '/../dbconnect.php');
 
 
-class Professor {
+class Adviser {
     public function create($data) {
         global $conn;
 
@@ -27,17 +27,18 @@ class Professor {
 
     public function getAll() {
         global $conn;
-        return $conn->query("
-            SELECT 
-            a.FacultyID, 
-            a.FacultyFirstName, 
-            a.FacultyMiddleName, 
-            a.FacultyLastName, 
-            d.DepartmentName, 
-            c.CollegeName
-            FROM ADVISER a
-            JOIN DEPARTMENT d ON a.DepartmentID = d.DepartmentID
-            JOIN COLLEGE c ON d.CollegeID = c.CollegeID
-        ");
+        $sql = "SELECT 
+                a.EmployeeID,
+                a.FacultyFirstName,
+                a.FacultyMiddleName,
+                a.FacultyLastName,
+                a.DepartmentID,
+                d.DepartmentName,
+                c.CollegeName
+                FROM ADVISER a
+                JOIN department d ON a.DepartmentID = d.DepartmentID
+                JOIN college c ON d.CollegeID = c.CollegeID";
+        return $conn->query($sql);
     }
+
 }

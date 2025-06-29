@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pre-Enrollment Page</title>
+    <title>Add Subject</title>
     <style>
         body {
             margin: 0;
@@ -40,9 +40,9 @@
         }
 
         .form-input {
-            width: 100%;
+            width: 60%;
             padding: 10px;
-            margin: 10px auto;
+            margin: 20px left;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -66,11 +66,11 @@
             text-align: center;
         }
 
-        .btn-enroll {
+        .btn-add {
             background-color: #007bff;
         }
 
-        .btn-enroll:hover {
+        .btn-add:hover {
             background-color: #0056b3;
         }
 
@@ -84,9 +84,9 @@
         }
 
         .btn-home {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            display: inline-block;
+            float: right;
+            margin-bottom: 40px;
             background-color: #6c757d;
             padding: 8px 12px;
             border-radius: 4px;
@@ -98,11 +98,15 @@
         .btn-home:hover {
             background-color: #5a6268;
         }
+
+        .form{
+            margin-bottom: 60px;
+        }
+
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <div class="header-panel">
         Pre-Enrollment System
     </div>
@@ -110,41 +114,19 @@
     <div class="notice-bar">
     </div>
 
-    <!-- Enrollment Form Section -->
     <div class="form-container">
-        <a href="homepage.php" class="btn-home">← Back to Homepage</a>
-        <form method="POST" action="../controllers/StudentController.php?action=submit">
-            <input class="form-input" name="firstname" placeholder="First Name" required>
-            <input class="form-input" name="middlename" placeholder="Middle Name" required>
-            <input class="form-input" name="lastname" placeholder="Last Name" required>
-            <input class="form-input" name="school_year" placeholder="School Year (e.g. 2024–2025)" required>
-            <input class="form-input" name="course" placeholder="Course (e.g. BSCS)" required>
-
-            <select class="form-input" name="term" required>
-                <option value="" disabled selected>Select Term to Enroll</option>
-                <option value="1st Year">1st Year</option>
-                <option value="2nd Year">2nd Year</option>
-                <option value="3rd Year">3rd Year</option>
-                <option value="4th Year">4th Year</option>
-                <option value="Non Block">Non Block</option>
-            </select>
-
-            <select class="form-input" name="department_id" required>
-                <option value="" disabled selected>Select Department ID</option>
-                <option value="1">1 - Computer Engineering</option>
-                <option value="2">2 - Electrical Engineering</option>
-                <option value="3">3 - Mechanical Engineering</option>
-                <option value="4">4 - Industrial Engineering</option>
-                <option value="5">5 - Electronics and Communications Engineering</option>
-                <option value="6">6 - Hospitality and Management</option>
-                <option value="7">7 - Accountancy</option>
-                <option value="8">8 - Tourism</option>
-                <option value="9">9 - Information Technology</option>
-            </select>
-
+        <div class="form">
+            <a href="homepage.php" class="btn-home">← Back to Homepage</a>
+        </div>
+        <form method="POST" action="../controllers/SubjectsController.php?action=submit">
+            <h3>Fill in the details required to add a subject to database.</h3>
+            <p>Enter Subject Description (e.g. Database Management)</p>
+            <input class="form-input" name="subject_description" placeholder="Subject Description/Name" required>
+            <p name="form-input">Enter Units from 1.00 - 5.00 (Must be in decimal)</p>
+            <input class="form-input" name="units" placeholder="Total Units (e.g. 3.00)" required>
+           
             <div class="button-group">
-                <button class="btn btn-enroll" type="submit">Add Student</button>
-                <a href="../controllers/StudentController.php?action=view" class="btn btn btn-view-link">View Student List</a>
+                <button class="btn btn-add" type="submit">Add Subject</button>
             </div>
         </form>
     </div>

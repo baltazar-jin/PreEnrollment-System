@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Enrolled Students</title>
+    <title>Subject and Offer Code List</title>
     <style>
         body {
             margin: 0;
@@ -32,7 +32,7 @@
         .table-container {
             background-color: white;
             padding: 30px;
-            max-width: 1100px;
+            max-width: 1500px;
             margin: 30px auto;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -73,17 +73,22 @@
         }
 
         td:nth-child(1),
-        td:nth-child(7),
-        td:nth-child(8) {
+        td:nth-child(7) {
             width: 70px;
         }
 
-        td:nth-child(2),
+        td:nth-child(2) {
+            width: 350px;
+        }
+
         td:nth-child(3),
         td:nth-child(4),
-        td:nth-child(9),
-        td:nth-child(10) {
-            width: 120px;
+        td:nth-child(5) {
+            width: 150px;
+        }
+
+        td:nth-child(6) {
+            width: 250px;
         }
     </style>
 </head>
@@ -93,35 +98,31 @@
         Pre-Enrollment System
     </div>
 
-    <div class="notice-bar"></div>
+    <div class="notice-bar">
+        Subject and Offer Code List
+    </div>
 
     <div class="table-container">
-        <a href="../views/add_student.php" class="btn-back">← Back to Enrollment Form</a>
+        <a href="../views/homepage.php" class="btn-back">← Back to Homepage</a>
         <table>
             <tr>
-                <th>ID</th>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Course</th>
-                <th>School Year</th>
-                <th>Term</th>
-                <th>Dept. ID</th>
-                <th>Department</th>
-                <th>College</th>
+                <th>Subject Code</th>
+                <th>Subject Description</th>
+                <th>Offer Code</th>
+                <th>Room</th>
+                <th>Time</th>
+                <th>Day</th>
+                <th>Units</th>
             </tr>
             <?php while ($row = $data->fetch_assoc()): ?>
             <tr>
-                <td><?= $row['StudentID'] ?></td>
-                <td><?= $row['StudentFirstName'] ?></td>
-                <td><?= $row['StudentMiddleName'] ?></td>
-                <td><?= $row['StudentLastName'] ?></td>
-                <td><?= $row['Course'] ?></td>
-                <td><?= $row['School_Year'] ?></td>
-                <td><?= $row['TermToEnroll'] ?></td>
-                <td><?= $row['DepartmentID'] ?></td>
-                <td><?= $row['DepartmentName'] ?></td>
-                <td><?= $row['CollegeName'] ?></td>
+                <td><?= $row['SubjectCode'] ?></td>
+                <td><?= $row['SubjectDescription'] ?></td>
+                <td><?= $row['OfferCode'] ?></td>
+                <td><?= $row['Room'] ?></td>
+                <td><?= $row['Time_sched'] ?></td>
+                <td><?= $row['Day'] ?></td>
+                <td><?= $row['Units'] ?></td>
             </tr>
             <?php endwhile; ?>
         </table>

@@ -45,11 +45,11 @@
             background-color: #0056b3;
         }
 
-        .btn-add_employee {
+        .btn-add {
             background-color: #28a745;
         }
 
-        .btn-add_employee:hover {
+        .btn-add:hover {
             background-color: #1e7e34;
         }
 
@@ -98,11 +98,17 @@
         <p>Welcome to Admin View Homepage</p>
         <p>Select options:</p>
         <div class="button-center-group">
-            <a href="add_student.php" class="btn btn-add_student">Add Student</a>
-            <a href="add_professor.php" class="btn btn-add_employee">Add Employee</a>
+            <a href="add_student.php" class="btn btn-add">Add Student</a>
+            <a href="../controllers/StudentController.php?action=view" class="btn btn btn-add">View Student List</a>
+            <a href="add_adviser.php" class="btn btn-add">Add Adviser</a>
+            <a href="../controllers/AdviserController.php?action=view" class="btn btn-add">View Adviser List</a>
+            <a href="add_subjects.php" class="btn btn-add">Add Subject</a>
+            <a href="add_offer.php" class="btn btn-add">Add Offer</a>
+            <a href="../controllers/OfferController.php?action=view" class="btn btn-add">View Subjects and Offer Code List</a>
+            <a href="add_offer.php" class="btn btn-add">Add Grade</a>
+            <a href="add_offer.php" class="btn btn-add">Add Department</a>
         </div>
     </div>
-
 
 </body>
 </html>

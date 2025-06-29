@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../dbconnect.php');
 
 class Student {
     public function create($data) {
-    global $conn;
+        global $conn;
 
         $stmt = $conn->prepare(
             "INSERT INTO STUDENT (
@@ -19,18 +19,16 @@ class Student {
         );
 
         $stmt->bind_param(
-            "ssssiii", // No more ID (AUTO_INCREMENT)
-            $data['first_name'],
+            "ssssisi", // No more ID (AUTO_INCREMENT)
+            $data['firstname'],
             $data['middlename'],
-            $data['last_name'],
+            $data['lastname'],
             $data['course'],
             $data['school_year'],
             $data['term'],
             $data['department_id']
         );
-
         $stmt->execute();
-
     }
 
     public function getAll(){
@@ -51,7 +49,4 @@ class Student {
             JOIN college c ON d.CollegeID = c.CollegeID";
         return $conn->query($sql);
     }
-
-
-
 }

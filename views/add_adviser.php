@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Professor</title>
+    <title>Add Adviser</title>
     <style>
         body {
             margin: 0;
@@ -84,9 +84,9 @@
         }
 
         .btn-home {
-            position: absolute;
-            top: 20px;
-            right: 20px;
+            display: inline-block;
+            float: right;
+            margin-bottom: 20px;
             background-color: #6c757d;
             padding: 8px 12px;
             border-radius: 4px;
@@ -111,8 +111,9 @@
 
     <div class="form-container">
         <a href="homepage.php" class="btn-home">← Back to Homepage</a>
-        <form method="POST" action="../controllers/ProfessorController.php?action=submit">
+        <form method="POST" action="../controllers/AdviserController.php?action=submit">
             <input class="form-input" name="first_name" placeholder="First Name" required>
+            <input class="form-input" name="middle_name" placeholder="Middle Name" required>
             <input class="form-input" name="last_name" placeholder="Last Name" required>
 
             <select class="form-input" name="department_id" required>
@@ -129,8 +130,8 @@
             </select>
 
             <div class="button-group">
-                <button class="btn btn-add" type="submit">Add Professor</button>
-                <a href="../controllers/ProfessorController.php?action=view" class="btn btn-view-link">View Professor List</a>
+                <button class="btn btn-add" type="submit">Add Adviser</button>
+                <a href="../controllers/AdviserController.php?action=view" class="btn btn-view-link">View Adviser List</a>
             </div>
         </form>
     </div>

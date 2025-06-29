@@ -13,5 +13,5 @@ if ($action === 'submit') {
 
 if ($action === 'view') {
     $data = $student->getAll();
-    include '../views/view_database.php';
+    include '../views/view_student.php';
 }
