@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Adviser</title>
+    <title>Add Subject</title>
     <style>
         body {
             margin: 0;
@@ -42,7 +42,7 @@
         .form-input {
             width: 60%;
             padding: 10px;
-            margin: 10px left;
+            margin: 20px left;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -86,7 +86,7 @@
         .btn-home {
             display: inline-block;
             float: right;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             background-color: #6c757d;
             padding: 8px 12px;
             border-radius: 4px;
@@ -99,9 +99,10 @@
             background-color: #5a6268;
         }
 
-        .btnspace{
-            margin-bottom: 50px;
+        .form{
+            margin-bottom: 60px;
         }
+
     </style>
 </head>
 <body>
@@ -114,32 +115,16 @@
     </div>
 
     <div class="form-container">
-        <div class="btnspace">
+        <div class="form">
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
-        <form method="POST" action="../controllers/AdviserController.php?action=submit">
-            <p>Enter Faculty First Name:</p>
-            <input class="form-input" name="first_name" placeholder="First Name" required>
-            <p>Enter Faculty Middle Name:</p>
-            <input class="form-input" name="middle_name" placeholder="Middle Name" required>
-            <p>Enter Faculty Last Name:</p>
-            <input class="form-input" name="last_name" placeholder="Last Name" required>
-            <p>Select Department for Adviser:</p>
-            <select class="form-input" name="department_id" required>
-                <option value="" disabled selected>Select Department ID</option>
-                <option value="1">1 - Computer Engineering</option>
-                <option value="2">2 - Electrical Engineering</option>
-                <option value="3">3 - Mechanical Engineering</option>
-                <option value="4">4 - Industrial Engineering</option>
-                <option value="5">5 - Electronics and Communications Engineering</option>
-                <option value="6">6 - Hospitality and Management</option>
-                <option value="7">7 - Accountancy</option>
-                <option value="8">8 - Tourism</option>
-                <option value="9">9 - Information Technology</option>
-            </select>
-
+        <form method="POST" action="../controllers/SubjectsController.php?action=submit">
+            <h3>Fill in the details required to add a department to the database.</h3>
+            <p>Enter Enter Department:(e.g. Department of Computer Engineering)</p>
+            <input class="form-input" name="department_name" placeholder="Department Name" required>
+          
             <div class="button-group">
-                <button class="btn btn-add" type="submit">Add Adviser</button>
+                <button class="btn btn-add" type="submit">Add Department</button>
             </div>
         </form>
     </div>

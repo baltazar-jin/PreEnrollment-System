@@ -2,12 +2,15 @@
 require_once('../models/Subjects.php');
 $subjects = new Subjects();
 $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
+require_once('../models/Student.php');
+$student = new Student();
+$studentList = $student->getStudentsList();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Offer</title>
+    <title>Add Grade</title>
     <style>
         body {
             margin: 0;
@@ -37,7 +40,7 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
         .form-container {
             background-color: white;
             padding: 30px;
-            max-width: 500px;
+            max-width: 400px;
             margin: 30px auto;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -47,7 +50,7 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
         .form-input {
             width: 60%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px left;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -72,11 +75,11 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
         }
 
         .btn-add {
-            background-color: #28abe2;
+            background-color: #007bff;
         }
 
         .btn-add:hover {
-            background-color: #128596;
+            background-color: #0056b3;
         }
 
         .btn-view-link {
@@ -104,17 +107,7 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
             background-color: #5a6268;
         }
 
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 15px;
-        }
-
-        .spacing {
-            margin-bottom: 5px;
-        }
-
-        .spacing-btn {
+        .btnSpace {
             margin-bottom: 50px;
         }
     </style>
@@ -122,20 +115,23 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
 <body>
 
     <div class="header-panel">
-        <p>Pre-Enrollment System</p>
+        Pre-Enrollment System
     </div>
 
     <div class="notice-bar">
     </div>
-
+    
     <div class="form-container">
-        <div class="spacing-btn">
+        <div class="btnSpace">
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
-        <form method="POST" action="../controllers/OfferController.php?action=submit">
-            <h3>Fill in the details required to add an offer code to the subject.</h3>
-
-            <!-- Subject Code Dropdown -->
+        <form method="POST" action="../controllers/GradeController.php?action=submit">
+            <p>Enter Prelim Grade:</p>
+            <input class="form-input" name="prelim_grade" placeholder="Prelim Grade" required>
+            <p>Enter Midterm Grade:</p>
+            <input class="form-input" name="midterm_grade" placeholder="Midterm Grade" required>
+            <p>Enter Final Grade:</p>
+            <input class="form-input" name="final_grade" placeholder="Final Grade" required>
             <p>Select Subject Code:</p>
             <select class="form-input" name="subject_code" id="subject_code" required>
                 <option value="" disabled selected>Select Subject</option>
@@ -145,29 +141,18 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
                     </option>
                 <?php endforeach; ?>
             </select>
+            <p>Select Student through ID:</p>
+            <select class="form-input" name="student_id" id="student_id" required>
+                <option value="" disabled selected>Select Student</option>
+                <?php foreach ($studentList as $student): ?>
+                    <option value="<?= $student['StudentID'] ?>">
+                        <?= $student['StudentID'] . " - " . $student['StudentFirstName'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
 
-            <p>Enter Offer Code to the Subject:</p>
-            <input class="form-input" name="offer_code" placeholder="Offer Code" required>
-            
-            <p>Enter Room:</p>
-            <input class="form-input" name="room" placeholder="Enter Room (e.g. SN102, SN103)" required>
-            <p>Enter Starting Time to End Time:</p>
-            <input class="form-input" name="time_sched" placeholder="Enter Time (e.g. 9:00AM - 10:00AM)" required>
-
-            <div class="spacing">
-                <p>Select Days (Can be multiple):</p>
-            </div>
-            <div class="checkbox-group">
-                <label><input type="checkbox" name="days[]" value="M"> Monday</label>
-                <label><input type="checkbox" name="days[]" value="T"> Tuesday</label>
-                <label><input type="checkbox" name="days[]" value="W"> Wednesday</label>
-                <label><input type="checkbox" name="days[]" value="Th"> Thursday</label>
-                <label><input type="checkbox" name="days[]" value="F"> Friday</label>
-            </div>
-
-            <!-- Buttons -->
             <div class="button-group">
-                <button class="btn btn-add" type="submit">Add Offer</button>
+                <button class="btn btn-add" type="submit">Submit Grades to Student</button>
             </div>
         </form>
     </div>

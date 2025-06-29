@@ -56,11 +56,11 @@
         .menu {
             background-color: white;
             padding: 30px;
-            max-width: 600px;
+            max-width: 1500px;
             margin: 30px auto;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            text-align: center; /* ✅ CENTER EVERYTHING INLINE */
+            text-align: center; 
         }
 
         .btn{
@@ -105,8 +105,9 @@
             <a href="add_subjects.php" class="btn btn-add">Add Subject</a>
             <a href="add_offer.php" class="btn btn-add">Add Offer</a>
             <a href="../controllers/OfferController.php?action=view" class="btn btn-add">View Subjects and Offer Code List</a>
-            <a href="add_offer.php" class="btn btn-add">Add Grade</a>
-            <a href="add_offer.php" class="btn btn-add">Add Department</a>
+            <a href="add_grade.php" class="btn btn-add">Add Grade</a>
+            <a href="../controllers/GradeController.php?action=view" class="btn btn-add">View Student Grade List</a>
+            <a href="add_department.php" class="btn btn-add">Add Department</a>
         </div>
     </div>
 

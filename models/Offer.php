@@ -14,19 +14,15 @@ class Offer {
                 Days
             ) VALUES (?, ?, ?, ?, ?)"
         );
-
-        $offer_code = $data['offer_code'];            // Manual entry
-        $subject_code = $data['subject_code'];        // FK from SUBJECTS table
-        $room = $data['room'];
-        $time = $data['time_start'] . ' - ' . $data['time_end'];
+        
         $days = isset($data['days']) ? implode(', ', $data['days']) : '';
 
         $stmt->bind_param(
             "sisss", // i = INT, s = STRING
-            $offer_code,
-            $subject_code,
-            $room,
-            $time,
+            $data['offer_code'],
+            $data['subject_code'],
+            $data['room'],
+            $data['time_sched'],
             $days
         );
 

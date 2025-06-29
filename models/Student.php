@@ -49,4 +49,19 @@ class Student {
             JOIN college c ON d.CollegeID = c.CollegeID";
         return $conn->query($sql);
     }
+
+    public function getStudentsList(){
+        global $conn;
+
+        $sql = "SELECT StudentID, StudentFirstName FROM STUDENT";
+        $result = $conn->query($sql);
+        
+        $student = [];
+
+        while ($row = $result->fetch_assoc()) {
+            $student[] = $row;
+        }
+
+        return $student;
+    }
 }
