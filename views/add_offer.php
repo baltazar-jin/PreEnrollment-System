@@ -133,7 +133,6 @@ $subjectList = $subjects->getAll(); // Fetch subject_code and subject_name
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
         <form method="POST" action="../controllers/OfferController.php?action=submit">
-            <h3>Fill in the details required to add an offer code to the subject.</h3>
 
             <!-- Subject Code Dropdown -->
             <p>Select Subject Code:</p>

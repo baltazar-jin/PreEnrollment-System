@@ -1,17 +1,17 @@
 <?php
-require_once('../models/Department.php');
+require_once('../models/College.php');
 
 $action = $_GET['action'] ?? '';
 
-$department = new Department();
+$college = new College();
 
 if ($action === 'submit') {
-    $department->create($_POST);
+    $college->create($_POST);
     header("Location: ../views/success.php");
     exit();
 }
 
 if ($action === 'view') {
-    $data = $department->getAll();
+    $data = $college->getAll();
     include '../views/view_adviser.php';
 }

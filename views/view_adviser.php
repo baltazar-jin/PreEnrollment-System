@@ -94,7 +94,7 @@
     </div>
 
     <div class="notice-bar">
-        Professors List
+        Advisers List
     </div>
 
     <div class="table-container">

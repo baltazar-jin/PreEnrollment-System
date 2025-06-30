@@ -119,7 +119,6 @@
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
         <form method="POST" action="../controllers/SubjectsController.php?action=submit">
-            <h3>Fill in the details required to add a subject to database.</h3>
             <p>Enter Subject Description (e.g. Database Management)</p>
             <input class="form-input" name="subject_description" placeholder="Subject Description/Name" required>
             <p name="form-input">Enter Units from 1.00 - 5.00 (Must be in decimal)</p>

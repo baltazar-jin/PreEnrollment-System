@@ -1,13 +1,8 @@
-<?php
-require_once('../models/Department.php');
-$department = new Department();
-$departmentList = $department->getAll(); 
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pre-Enrollment Page</title>
+    <title>Add College</title>
     <style>
         body {
             margin: 0;
@@ -47,7 +42,7 @@ $departmentList = $department->getAll();
         .form-input {
             width: 60%;
             padding: 10px;
-            margin: 10px left;
+            margin: 20px left;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -71,11 +66,11 @@ $departmentList = $department->getAll();
             text-align: center;
         }
 
-        .btn-enroll {
+        .btn-add {
             background-color: #007bff;
         }
 
-        .btn-enroll:hover {
+        .btn-add:hover {
             background-color: #0056b3;
         }
 
@@ -91,7 +86,7 @@ $departmentList = $department->getAll();
         .btn-home {
             display: inline-block;
             float: right;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
             background-color: #6c757d;
             padding: 8px 12px;
             border-radius: 4px;
@@ -100,19 +95,18 @@ $departmentList = $department->getAll();
             font-size: 14px;
         }
 
-
         .btn-home:hover {
             background-color: #5a6268;
         }
 
-        .spacing-btn{
-            margin-bottom: 50px;
+        .form{
+            margin-bottom: 60px;
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Header Section -->
     <div class="header-panel">
         Pre-Enrollment System
     </div>
@@ -120,44 +114,15 @@ $departmentList = $department->getAll();
     <div class="notice-bar">
     </div>
 
-    <!-- Enrollment Form Section -->
     <div class="form-container">
-        <div class="spacing-btn">
+        <div class="form">
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
-       
-        <form method="POST" action="../controllers/StudentController.php?action=submit">
-            <p>Enter First Name:</p>
-            <input class="form-input" name="firstname" placeholder="First Name" required>
-            <p>Enter Middle Name:</p>
-            <input class="form-input" name="middlename" placeholder="Middle Name" required>
-            <p>Enter Last Name:</p>
-            <input class="form-input" name="lastname" placeholder="Last Name" required>
-            <p>Enter School year (e.g. 2024–2025):</p>
-            <input class="form-input" name="school_year" placeholder="School Year" required>
-            <p>Enter Course:</p>
-            <input class="form-input" name="course" placeholder="Course (e.g. BSCS)" required>
-            <p>Select Term to Enroll:</p>
-            <select class="form-input" name="term" required>
-                <option value="" disabled selected>Click here to select</option>
-                <option value="1st Year">1st Year</option>
-                <option value="2nd Year">2nd Year</option>
-                <option value="3rd Year">3rd Year</option>
-                <option value="4th Year">4th Year</option>
-                <option value="Non Block">Non Block</option>
-            </select>
-            <p>Select Department:</p>
-            <select class="form-input" name="department_id" id="department_id" required>
-                <option value="" disabled selected>Select Department ID</option>
-                <?php foreach ($departmentList as $department): ?>
-                    <option value="<?= $department['DepartmentID'] ?>">
-                        <?= $department['DepartmentID'] . " - " . $department['DepartmentName'] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
+        <form method="POST" action="../controllers/CollegeController.php?action=submit">
+            <p>Enter College:(e.g. College of Engineering)</p>
+            <input class="form-input" name="college_name" placeholder="College Name" required>
             <div class="button-group">
-                <button class="btn btn-enroll" type="submit">Add Student</button>
+                <button class="btn btn-add" type="submit">Add College</button>
             </div>
         </form>
     </div>

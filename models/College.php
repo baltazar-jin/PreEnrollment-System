@@ -2,21 +2,19 @@
 require_once(__DIR__ . '/../dbconnect.php');
 
 
-class Department {
+class College {
     public function create($data) {
         global $conn;
 
         $stmt = $conn->prepare(
-            "INSERT INTO DEPARTMENT (
-                DepartmentName, 
-                CollegeID
-            )  VALUES (?, ?)"
+            "INSERT INTO COLLEGE (
+                CollegeName 
+            )  VALUES (?)"
         );
 
         $stmt->bind_param(
-            "si", 
-            $data['department_name'], 
-            $data['college_id']
+            "s", 
+            $data['college_name']
         );
         $stmt->execute();
     }
@@ -24,16 +22,17 @@ class Department {
     public function getAll() {
         global $conn;
 
-        $sql = "SELECT DepartmentID, DepartmentName FROM DEPARTMENT";
+        $sql = "SELECT CollegeID, CollegeName FROM COLLEGE";
         $result = $conn->query($sql);
         
-        $department = [];
+        $college = [];
 
         while ($row = $result->fetch_assoc()) {
-            $department[] = $row;
+            $college[] = $row;
         }
 
-        return $department;
+        return $college;
     }
+     
 
 }

@@ -1,3 +1,8 @@
+<?php
+require_once('../models/Department.php');
+$department = new Department();
+$departmentList = $department->getAll(); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -125,17 +130,13 @@
             <p>Enter Faculty Last Name:</p>
             <input class="form-input" name="last_name" placeholder="Last Name" required>
             <p>Select Department for Adviser:</p>
-            <select class="form-input" name="department_id" required>
+            <select class="form-input" name="department_id" id="department_id" required>
                 <option value="" disabled selected>Select Department ID</option>
-                <option value="1">1 - Computer Engineering</option>
-                <option value="2">2 - Electrical Engineering</option>
-                <option value="3">3 - Mechanical Engineering</option>
-                <option value="4">4 - Industrial Engineering</option>
-                <option value="5">5 - Electronics and Communications Engineering</option>
-                <option value="6">6 - Hospitality and Management</option>
-                <option value="7">7 - Accountancy</option>
-                <option value="8">8 - Tourism</option>
-                <option value="9">9 - Information Technology</option>
+                <?php foreach ($departmentList as $department): ?>
+                    <option value="<?= $department['DepartmentID'] ?>">
+                        <?= $department['DepartmentID'] . " - " . $department['DepartmentName'] ?>
+                    </option>
+                <?php endforeach; ?>
             </select>
 
             <div class="button-group">

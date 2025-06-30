@@ -108,6 +108,7 @@
             <a href="add_grade.php" class="btn btn-add">Add Grade</a>
             <a href="../controllers/GradeController.php?action=view" class="btn btn-add">View Student Grade List</a>
             <a href="add_department.php" class="btn btn-add">Add Department</a>
+            <a href="add_college.php" class="btn btn-add">Add College</a>
         </div>
     </div>
 

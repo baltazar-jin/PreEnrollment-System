@@ -1,8 +1,14 @@
+<?php
+require_once('../models/College.php');
+$college = new College();
+$collegeList = $college->getAll(); 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add Subject</title>
+    <title>Add Department</title>
     <style>
         body {
             margin: 0;
@@ -118,11 +124,19 @@
         <div class="form">
             <a href="homepage.php" class="btn-home">← Back to Homepage</a>
         </div>
-        <form method="POST" action="../controllers/SubjectsController.php?action=submit">
+        <form method="POST" action="../controllers/DepartmentController.php?action=submit">
             <h3>Fill in the details required to add a department to the database.</h3>
             <p>Enter Enter Department:(e.g. Department of Computer Engineering)</p>
             <input class="form-input" name="department_name" placeholder="Department Name" required>
-          
+            <p>Select the College/School the department belongs to:</p>
+             <select class="form-input" name="college_id" id="college_id" required>
+                <option value="" disabled selected>Select College ID</option>
+                <?php foreach ($collegeList as $college): ?>
+                    <option value="<?= $college['CollegeID'] ?>">
+                        <?= $college['CollegeID'] . " - " . $college['CollegeName'] ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
             <div class="button-group">
                 <button class="btn btn-add" type="submit">Add Department</button>
             </div>
