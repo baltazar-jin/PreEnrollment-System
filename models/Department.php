@@ -13,12 +13,20 @@ class Department {
             )  VALUES (?, ?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
             "si", 
             $data['department_name'], 
             $data['college_id']
         );
-        $stmt->execute();
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function getAll() {

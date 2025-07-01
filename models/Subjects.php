@@ -13,12 +13,21 @@ class Subjects {
             )  VALUES (?, ?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
             "sd", 
             $data['subject_description'], 
             $data['units']
         );
-        $stmt->execute();
+        
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
+
     }
 
     public function getAll() {

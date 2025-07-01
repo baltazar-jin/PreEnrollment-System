@@ -6,12 +6,8 @@ $action = $_GET['action'] ?? '';
 $student = new Student();
 
 if ($action === 'submit') {
-    $student->create($_POST);
-    header("Location: ../views/success.php");
-    exit();
-}
+    $success = $student->create($_POST);
 
-if ($action === 'view') {
-    $data = $student->getAll();
-    include '../views/view_student.php';
+    echo json_encode(['status' => 'success']);
+    exit();
 }

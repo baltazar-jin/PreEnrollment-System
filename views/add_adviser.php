@@ -1,7 +1,9 @@
 <?php
+require_once('../models/Adviser.php');
 require_once('../models/Department.php');
-$department = new Department();
-$departmentList = $department->getAll(); 
+
+$departmentModel = new Department();
+$departmentList = $departmentModel->getAll();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,39 +17,17 @@ $departmentList = $department->getAll();
             background-color: #f3eee9;
         }
 
-        .header-panel {
-            background-color: #14361c;
-            height: 150px;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .notice-bar {
-            background-color: #f1bd3c;
-            padding: 10px;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
         .form-container {
-            background-color: white;
-            padding: 30px;
+            background-color: transparent;
             max-width: 500px;
             margin: 30px auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
             position: relative;
         }
 
         .form-input {
-            width: 60%;
+            width: 40%;
             padding: 10px;
-            margin: 10px left;
+            margin: 10px 0;
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -72,78 +52,61 @@ $departmentList = $department->getAll();
         }
 
         .btn-add {
-            background-color: #007bff;
+            background-color: #28a745;
         }
 
         .btn-add:hover {
-            background-color: #0056b3;
-        }
-
-        .btn-view-link {
-            background-color: #28a745;
-            text-decoration: none;
-        }
-
-        .btn-view-link:hover {
-            background-color: #1e7e34;
+            background-color: #218838;
         }
 
         .btn-home {
             display: inline-block;
             float: right;
-            margin-bottom: 20px;
-            background-color: #6c757d;
-            padding: 8px 12px;
-            border-radius: 4px;
+            margin-bottom: 10px;
+            padding: 12px 20px;
+            background-color: #007bff;
             color: white;
+            font-size: 16px;
+            border-radius: 4px;
             text-decoration: none;
-            font-size: 14px;
         }
 
         .btn-home:hover {
-            background-color: #5a6268;
+            background-color: #0056b3;
         }
 
-        .btnspace{
+        .spacing-btn {
             margin-bottom: 50px;
         }
     </style>
 </head>
 <body>
-
-    <div class="header-panel">
-        Pre-Enrollment System
+    <div class="spacing-btn">
+        <a href="#" class="btn-home" onclick="loadPage('view_adviser', this)">View Adviser List</a>
     </div>
+    <form id="addAdviserForm" method="POST">
+        <p>Enter Faculty First Name:</p>
+        <input class="form-input" name="first_name" placeholder="First Name" required>
 
-    <div class="notice-bar">
-    </div>
+        <p>Enter Faculty Middle Name:</p>
+        <input class="form-input" name="middle_name" placeholder="Middle Name" required>
 
-    <div class="form-container">
-        <div class="btnspace">
-            <a href="homepage.php" class="btn-home">← Back to Homepage</a>
+        <p>Enter Faculty Last Name:</p>
+        <input class="form-input" name="last_name" placeholder="Last Name" required>
+
+        <p>Select Department for Adviser:</p>
+        <select class="form-input" name="department_id" required>
+            <option value="" disabled selected>Select Department</option>
+            <?php foreach ($departmentList as $department): ?>
+                <option value="<?= $department['DepartmentID'] ?>">
+                    <?= $department['DepartmentID'] . " - " . $department['DepartmentName'] ?>
+                </option>
+            <?php endforeach; ?>
+        </select>
+
+        <div class="button-group">
+            <button class="btn btn-add" type="submit">Add Adviser</button>
         </div>
-        <form method="POST" action="../controllers/AdviserController.php?action=submit">
-            <p>Enter Faculty First Name:</p>
-            <input class="form-input" name="first_name" placeholder="First Name" required>
-            <p>Enter Faculty Middle Name:</p>
-            <input class="form-input" name="middle_name" placeholder="Middle Name" required>
-            <p>Enter Faculty Last Name:</p>
-            <input class="form-input" name="last_name" placeholder="Last Name" required>
-            <p>Select Department for Adviser:</p>
-            <select class="form-input" name="department_id" id="department_id" required>
-                <option value="" disabled selected>Select Department ID</option>
-                <?php foreach ($departmentList as $department): ?>
-                    <option value="<?= $department['DepartmentID'] ?>">
-                        <?= $department['DepartmentID'] . " - " . $department['DepartmentName'] ?>
-                    </option>
-                <?php endforeach; ?>
-            </select>
-
-            <div class="button-group">
-                <button class="btn btn-add" type="submit">Add Adviser</button>
-            </div>
-        </form>
-    </div>
-
+    </form>
 </body>
 </html>

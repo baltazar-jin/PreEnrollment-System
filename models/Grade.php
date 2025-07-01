@@ -16,6 +16,10 @@ class Grade {
             )  VALUES (?, ?, ?, ?, ?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
             "dddii", 
             $data['prelim_grade'], 
@@ -24,7 +28,11 @@ class Grade {
             $data['subject_code'],
             $data['student_id']
         );
-        $stmt->execute();
+        
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function getAll() {

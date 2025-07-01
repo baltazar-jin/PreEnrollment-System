@@ -4,7 +4,7 @@ require_once(__DIR__ . '/../dbconnect.php');
 
 class Student {
     public function create($data) {
-        global $conn;
+    global $conn;
 
         $stmt = $conn->prepare(
             "INSERT INTO STUDENT (
@@ -14,22 +14,33 @@ class Student {
                 Course, 
                 School_Year, 
                 TermToEnroll, 
-                DepartmentID
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                DepartmentID,
+                EmployeeID
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
-            "ssssisi", // No more ID (AUTO_INCREMENT)
+            "ssssisii", 
             $data['firstname'],
             $data['middlename'],
             $data['lastname'],
             $data['course'],
             $data['school_year'],
             $data['term'],
-            $data['department_id']
+            $data['department_id'],
+            $data['employee_id']
         );
-        $stmt->execute();
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
+
 
     public function getAll(){
         global $conn;
@@ -43,6 +54,7 @@ class Student {
                 s.TermToEnroll,
                 s.DepartmentID,
                 d.DepartmentName,
+                s.EmployeeID,
                 c.CollegeName
             FROM STUDENT s
             JOIN department d ON s.DepartmentID = d.DepartmentID

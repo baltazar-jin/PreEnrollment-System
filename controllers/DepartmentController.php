@@ -6,12 +6,8 @@ $action = $_GET['action'] ?? '';
 $department = new Department();
 
 if ($action === 'submit') {
-    $department->create($_POST);
-    header("Location: ../views/success.php");
+    $success = $department->create($_POST);
+    echo json_encode(['status' => $success ? 'success' : 'error']);
     exit();
 }
 
-if ($action === 'view') {
-    $data = $department->getAll();
-    include '../views/view_adviser.php';
-}

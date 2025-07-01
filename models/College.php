@@ -12,11 +12,19 @@ class College {
             )  VALUES (?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
             "s", 
             $data['college_name']
         );
-        $stmt->execute();
+
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function getAll() {

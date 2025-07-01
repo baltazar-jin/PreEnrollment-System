@@ -15,6 +15,10 @@ class Adviser {
             )  VALUES (?, ?, ?, ?)"
         );
 
+        if (!$stmt) {
+            return false;
+        }
+
         $stmt->bind_param(
             "sssi", 
             $data['first_name'], 
@@ -22,7 +26,11 @@ class Adviser {
             $data['last_name'], 
             $data['department_id']
         );
-        $stmt->execute();
+        
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function getAll() {

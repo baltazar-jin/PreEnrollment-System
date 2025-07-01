@@ -6,12 +6,9 @@ $action = $_GET['action'] ?? '';
 $grade = new Grade();
 
 if ($action === 'submit') {
-    $grade->create($_POST);
-    header("Location: ../views/success.php");
+    $success = $grade->create($_POST);
+    echo json_encode(['status' => $success ? 'success' : 'error']);
     exit();
 }
 
-if ($action === 'view') {
-    $data = $grade->getAll();
-    include '../views/view_grade.php';
-}
+

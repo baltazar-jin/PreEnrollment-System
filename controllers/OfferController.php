@@ -6,12 +6,8 @@ $action = $_GET['action'] ?? '';
 $offer = new Offer();
 
 if ($action === 'submit') {
-    $offer->create($_POST);
-    header("Location: ../views/success.php");
+    $success = $offer->create($_POST);
+    echo json_encode(['status' => $success ? 'success' : 'error']);
     exit();
 }
 
-if ($action === 'view') {
-    $data = $offer->getAll();
-    include '../views/view_subjects_offer.php';
-}

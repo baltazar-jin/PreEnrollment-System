@@ -17,6 +17,10 @@ class Offer {
         
         $days = isset($data['days']) ? implode(', ', $data['days']) : '';
 
+        if (!$stmt) {
+            return false;
+        }
+        
         $stmt->bind_param(
             "sisss", // i = INT, s = STRING
             $data['offer_code'],
@@ -26,7 +30,10 @@ class Offer {
             $days
         );
 
-        $stmt->execute();
+        $result = $stmt->execute();
+        $stmt->close();
+
+        return $result;
     }
 
     public function getAll() {

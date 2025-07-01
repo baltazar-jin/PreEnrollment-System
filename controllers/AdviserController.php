@@ -6,12 +6,9 @@ $action = $_GET['action'] ?? '';
 $adviser = new Adviser();
 
 if ($action === 'submit') {
-    $adviser->create($_POST);
-    header("Location: ../views/success.php");
+    $success = $adviser->create($_POST);
+    echo json_encode(['status' => $success ? 'success' : 'error']);
     exit();
 }
 
-if ($action === 'view') {
-    $data = $adviser->getAll();
-    include '../views/view_adviser.php';
-}
+
